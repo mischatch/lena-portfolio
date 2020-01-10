@@ -1,4 +1,7 @@
-graph cms https://app.graphcms.com/
+Headless CMS portfolio website with React.js, GraphCMS, Apollo Client.
+
+GraphCMS https://app.graphcms.com/
+Apollo Client https://www.apollographql.com/docs/react/
 
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
