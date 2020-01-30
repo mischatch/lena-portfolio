@@ -8,13 +8,14 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link
+  Link,
+  HashRouter
 } from "react-router-dom";
 
 
 function App() {
   return (
-      <Router>
+      <HashRouter>
 
         <Link to="/">Lena Byalaya</Link>
         <Link to="/about">About</Link>
@@ -24,7 +25,7 @@ function App() {
           <Route path="/about" component={About} />
           <Route path="/" component={Home} />
         </Switch>
-      </Router>
+      </HashRouter>
   );
 }
 
