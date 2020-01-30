@@ -1,0 +1,37 @@
+[debug] [2020-01-30T19:29:55.800Z] ----------------------------------------------------------------------
+[debug] [2020-01-30T19:29:55.802Z] Command:       /Users/mikhailcheburakhtin/.nvm/versions/node/v10.13.0/bin/node /Users/mikhailcheburakhtin/.nvm/versions/node/v10.13.0/bin/firebase deploy
+[debug] [2020-01-30T19:29:55.802Z] CLI Version:   7.6.2
+[debug] [2020-01-30T19:29:55.802Z] Platform:      darwin
+[debug] [2020-01-30T19:29:55.802Z] Node Version:  v10.13.0
+[debug] [2020-01-30T19:29:55.803Z] Time:          Thu Jan 30 2020 14:29:55 GMT-0500 (Eastern Standard Time)
+[debug] [2020-01-30T19:29:55.803Z] ----------------------------------------------------------------------
+[debug] [2020-01-30T19:29:55.803Z] 
+[debug] [2020-01-30T19:29:55.813Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2020-01-30T19:29:55.813Z] > authorizing via signed-in user
+[debug] [2020-01-30T19:29:55.813Z] [iam] checking project lena-portfolio for permissions ["firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2020-01-30T19:29:55.815Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2020-01-30T19:29:55.815Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[debug] [2020-01-30T19:29:56.051Z] <<< HTTP RESPONSE 200
+[debug] [2020-01-30T19:29:56.066Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/lena-portfolio:testIamPermissions  
+
+[debug] [2020-01-30T19:29:56.314Z] <<< HTTP RESPONSE 200
+[debug] [2020-01-30T19:29:56.316Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/lena-portfolio  
+ 
+[debug] [2020-01-30T19:29:56.764Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Deploying to 'lena-portfolio'...
+[info] 
+[info] i  deploying hosting
+[debug] [2020-01-30T19:29:56.767Z] >>> HTTP REQUEST POST https://firebasehosting.googleapis.com/v1beta1/sites/lena-portfolio/versions  
+
+[debug] [2020-01-30T19:29:57.890Z] <<< HTTP RESPONSE 200
+[info] i  hosting[lena-portfolio]: beginning deploy...
+[info] i  hosting[lena-portfolio]: found 19 files in build
+[debug] [2020-01-30T19:29:58.088Z] [hosting] hash cache [YnVpbGQ] stored for 19 files
+[debug] [2020-01-30T19:29:58.088Z] [hosting][hash queue][FINAL]
+[debug] [2020-01-30T19:29:58.088Z] >>> HTTP REQUEST POST https://firebasehosting.googleapis.com/v1beta1/sites/lena-portfolio/versions/38800060971aff98:populateFiles  
+ <request body omitted>
+[debug] [2020-01-30T19:30:00.663Z] <<< HTTP RESPONSE 200
+[debug] [2020-01-30T19:30:00.675Z] [hosting][populate queue][FINAL]
+[debug] [2020-01-30T19:30:00.675Z] [hosting] uploads queued: 19

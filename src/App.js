@@ -2,6 +2,7 @@ import React from 'react';
 import './styles/styles.scss';
 import About from './components/about';
 import Home from './components/home';
+import ProjectAll from './components/project-all';
 
 import {
   BrowserRouter as Router,
@@ -19,15 +20,9 @@ function App() {
         <Link to="/about">About</Link>
 
         <Switch>
-          <Route path="/about">
-            <About />
-          </Route>
-
-           <Route path="/">
-             <Home />
-           </Route>
-
-
+          <Route path='/category/:title' component={ProjectAll} />
+          <Route path="/about" component={About} />
+          <Route path="/" component={Home} />
         </Switch>
       </Router>
   );
