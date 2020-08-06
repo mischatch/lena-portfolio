@@ -19,7 +19,6 @@ class Home extends React.Component{
     }
 
     this.categories = this.categories.bind(this);
-    // this.handleClick = this.handleClick.bind(this);
   }
 
   componentDidMount(){
@@ -35,13 +34,8 @@ class Home extends React.Component{
         `
       })
       .then(result => this.setState({categories: result.data.homepageSections}));
-      // .then(result => console.log(result.data.homepageSections));
   }
 
-  // handleClick(location){
-  //   // debugger
-  //   return <ProjectAll cat={location} />
-  // }
 
   categories(){
     if(this.state.categories.length > 0){
@@ -59,18 +53,6 @@ class Home extends React.Component{
               })
             }
           </div>
-          //   <Router>
-          //     <Switch>
-          //   {cats.map((item, i) => {
-          //     return(
-          //           <Route to={`/category/${item.category}`}>
-          //             <ProjectAll cat={item.category} />
-          //           </Route>
-          //     )
-          //   })}
-          // </Switch>
-          // </Router>
-
       )
     } else {
       return (<div>Loading</div>);

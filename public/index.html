@@ -27,21 +27,28 @@
     <title>Elena Byalaya</title>
   </head>
   <body>
-      <script>
-      // Your web app's Firebase configuration
-      var firebaseConfig = {
-        apiKey: "AIzaSyDexkSNMbC0B5rVI084QCKH4BKXQ3ar8eE",
-        authDomain: "lena-portfolio.firebaseapp.com",
-        databaseURL: "https://lena-portfolio.firebaseio.com",
-        projectId: "lena-portfolio",
-        storageBucket: "lena-portfolio.appspot.com",
-        messagingSenderId: "609391587003",
-        appId: "1:609391587003:web:fb08fa297ce269adb0c39e",
-        measurementId: "G-03RV1BSJFG"
-      };
-      // Initialize Firebase
-      firebase.initializeApp(firebaseConfig);
-      firebase.analytics();
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-app.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+       https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-analytics.js"></script>
+
+    <script>
+    // Your web app's Firebase configuration
+    var firebaseConfig = {
+      apiKey: "AIzaSyDexkSNMbC0B5rVI084QCKH4BKXQ3ar8eE",
+      authDomain: "lena-portfolio.firebaseapp.com",
+      databaseURL: "https://lena-portfolio.firebaseio.com",
+      projectId: "lena-portfolio",
+      storageBucket: "lena-portfolio.appspot.com",
+      messagingSenderId: "609391587003",
+      appId: "1:609391587003:web:fb08fa297ce269adb0c39e",
+      measurementId: "G-03RV1BSJFG"
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    firebase.analytics();
     </script>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
