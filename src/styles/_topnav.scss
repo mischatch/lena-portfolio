@@ -1,0 +1,12 @@
+.topnav {
+  width: 100%;
+  padding: .3rem 1rem;
+  display: flex;
+  flex-direction: row;
+  a {
+    text-decoration: none;
+  }
+  .homelink {
+    margin-right: auto;
+  }
+}

@@ -9,3 +9,7 @@
   &::before, &::after { content: ''; display: table; clear: both; width:1px; margin-left:-1px; }
   &::before { float: left; padding-bottom: $padding; }
 }
+
+@function nth-value($list, $index) {
+  @return if(length($list) >= $index, nth($list, $index), null);
+}

@@ -1,3 +1,46 @@
 .home-header {
   color: green;
+  font-size: 3rem;
+
+}
+.tiles {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  .project-tile {
+    display: block;
+    .cover-image {
+      width: 100%;
+      background-size: cover;
+      background-position: center;
+      position: relative;
+      overflow: hidden;
+      .title {
+        width: 100%;
+        padding: .5rem;
+        background: $white-tr;
+        text-decoration: none;
+        position: absolute;
+        bottom: -2.5rem;
+        transition: all .4s;
+      }
+      &:hover {
+        .title {
+          bottom: 0;
+        }
+      }
+    }
+    &.oneX {
+      width: 25%;
+      .cover-image {
+        @include aspect-ratio($ratio: 1/1);
+      }
+    }
+    &.twoX {
+      width: 50%;
+      .cover-image {
+        @include aspect-ratio($ratio: 2/1);
+      }
+    }
+  }
 }

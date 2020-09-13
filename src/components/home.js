@@ -1,24 +1,21 @@
 import React from 'react';
 import { client } from '../apolloClient';
 import { gql } from "apollo-boost";
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link,
-  Redirect
-} from "react-router-dom";
-import ProjectAll from './project-all';
+import { Link, withRouter } from "react-router-dom";
+import Loading from './loading';
+// import Project from './project';
+// import ProjectAll from './project-all';
 
 class Home extends React.Component{
   constructor(props){
     super(props);
 
     this.state = {
-      categories: []
+      categories: [],
+      projects: [],
     }
 
-    this.categories = this.categories.bind(this);
+    this.projects = this.projects.bind(this);
   }
 
   componentDidMount(){
@@ -26,47 +23,57 @@ class Home extends React.Component{
     .query({
         query: gql`
         {
-          homepageSections {
-            title
-            category
+          projects {
+            projectTitle
+            
+            tileImage {
+              url
+            }
+            tileSize
           }
         }
         `
       })
-      .then(result => this.setState({categories: result.data.homepageSections}));
+      .then(result => this.setState({projects: result.data.projects}));
+
   }
 
 
-  categories(){
-    if(this.state.categories.length > 0){
-      const cats = this.state.categories;
+  projects(){
+    if(this.state.projects.length > 0){
+      const { projects } = this.state;
       return (
         <div className="tiles">
-            {cats.map((item, i) => {
-              return(
-                  <div key={`tile${i}`} className="tile">
-                    <Link to={`/category/${item.category}`}>
-                      <h1>{item.title}</h1>
-                    </Link>
-                  </div>
-                )
-              })
-            }
-          </div>
+          {projects.map((project, i) => <Link
+                to={{
+                  pathname: `/${ project.projectTitle.split(' ').join('-') }`,
+                  state: {projectId: project.projectTitle.split(' ').join('-')}
+                }}
+                className={`project-tile ${project.tileSize}`}
+                key={`tile${i}`}>
+                <div className="cover-image" style={{ 'backgroundImage': `url(${!!project.tileImage.url ? project.tileImage.url : ''})`}}>
+                  <h1 className="title">{project.projectTitle}</h1>
+                </div>
+              </Link>
+            )
+          }
+        </div>
       )
     } else {
-      return (<div>Loading</div>);
+      return (
+        <Loading />
+      );
     }
   }
 
   render(){
     return (
       <div>
-        <h1 className="home-header">Homepage</h1>
-          {this.categories()}
+        {this.projects()}
+        {/* <ProjectsQuery /> */}
       </div>
     )
   }
 }
 
-export default Home;
+export default withRouter(Home);
