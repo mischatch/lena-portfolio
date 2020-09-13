@@ -1,0 +1,43 @@
+.project-page {
+  width: 100%;
+  .project {
+    .images {
+      width: calc(100% * .75);
+      padding-bottom: 10rem;
+      .image-container {
+        width: 100%;
+        height: auto;
+        margin-bottom: 1rem;
+      }
+    }
+    .project-copy {
+      padding: .3rem;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background: $white;
+      transform: translateY(calc(100% - 2rem));
+      transition: all .45s;
+      .title {
+        .show-button {
+          margin-left: 2rem;
+          text-transform: uppercase;
+          color: $black;
+          cursor: pointer;
+          transition: all .25s;
+          &:hover {
+            color: $blue;
+          }
+          &.active {
+            color: $blue;
+          }
+        }
+      }
+      &.active {
+        transform: translateY(0);
+      }
+    }
+  }
+
+}

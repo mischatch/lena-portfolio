@@ -25,7 +25,7 @@ class Project extends React.Component{
     const projectId = this.state;
 
     return (
-      <div className="">
+      <div className="project-page">
         { !!projectId ? <ProjectQuery projectId={this.state.projectId} /> : <Loading /> }
       </div>
     )

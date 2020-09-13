@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Loading from './loading';
 import { useQuery, gql } from '@apollo/client';
 // import { client } from '../apolloClient';
@@ -9,13 +9,17 @@ const projectQry = gql`
     project(where: {projectTitle: $projectTitle}) {
       projectTitle
       projectDescription
-
+      shortDescription
+      image {
+        url
+      }
     }
   }
 `
 
 
 const ProjectQuery = ({ projectId }) => {
+  const [active, setActive] = useState(false);
   const params = {
     variables: {
       projectTitle: projectId.split('-').join(' ')
@@ -40,8 +44,18 @@ const ProjectQuery = ({ projectId }) => {
     const { project } = data;
     return (
       <div className="project">
-        {project.projectTitle}
-        {project.projectDescription}
+        <div className="images">
+          {project.image.map((image, i) => <img
+            alt=""
+            key={`image-${i}`}
+            src={image.url}
+            className="image-container"
+          />)}
+          </div>
+        <div className={`project-copy ${active ? 'active' : ''}`}>
+          <h1 className="title">{project.projectTitle}   <span className={`show-button ${active ? 'active' : ''}`} onClick={() => active ? setActive(false) : setActive(true)}>{active ? 'show less' : 'show more'}</span></h1>
+          <p className="description">{project.projectDescription !== '' ? project.projectDescription : project.shortDescription}</p>
+        </div>
       </div>
     )
   }

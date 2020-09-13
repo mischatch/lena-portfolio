@@ -23,13 +23,14 @@ class Home extends React.Component{
     .query({
         query: gql`
         {
-          projects {
+          projects(orderBy: order_ASC) {
             projectTitle
-            
+            shortDescription
             tileImage {
               url
             }
             tileSize
+            order
           }
         }
         `
