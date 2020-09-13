@@ -35,7 +35,6 @@ const ProjectsQuery = ({ projectId }) => {
       </div>
     )
   } else if(data.projects.length > 0) {
-    debugger
     const { projects } = data;
     return (
       <div className="project">

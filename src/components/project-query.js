@@ -1,7 +1,7 @@
 import React from 'react';
 import Loading from './loading';
 import { useQuery, gql } from '@apollo/client';
-import { client } from '../apolloClient';
+// import { client } from '../apolloClient';
 // import { gql } from "apollo-boost";
 
 const projectQry = gql`
@@ -22,7 +22,6 @@ const ProjectQuery = ({ projectId }) => {
     }
   }
   const { loading, error, data } = useQuery(projectQry, params);
-  debugger
   if(loading){
     return (
       <div className="project">
