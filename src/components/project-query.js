@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import Loading from './loading';
 import { useQuery, gql } from '@apollo/client';
-import ReactMarkdown from 'react-markdown';
 // import { client } from '../apolloClient';
 // import { gql } from "apollo-boost";
 
