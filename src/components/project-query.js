@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Loading from './loading';
 import { useQuery, gql } from '@apollo/client';
+import ReactMarkdown from 'react-markdown';
 // import { client } from '../apolloClient';
 // import { gql } from "apollo-boost";
 
@@ -54,7 +55,10 @@ const ProjectQuery = ({ projectId }) => {
           </div>
         <div className={`project-copy ${active ? 'active' : ''}`}>
           <h1 className="title">{project.projectTitle}   <span className={`show-button ${active ? 'active' : ''}`} onClick={() => active ? setActive(false) : setActive(true)}>{active ? 'show less' : 'show more'}</span></h1>
-          <p className="description">{project.projectDescription !== '' ? project.projectDescription : project.shortDescription}</p>
+          <p className="description">{!!project.projectDescription ?
+            project.projectDescription
+              :
+            project.shortDescription }</p>
         </div>
       </div>
     )
