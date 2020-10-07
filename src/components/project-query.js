@@ -40,7 +40,7 @@ const ProjectQuery = ({ projectId }) => {
         <p>{error.message}</p>
       </div>
     )
-  } else if(Object.keys(data.project).length > 0) {
+  } else if(!!data.project && Object.keys(data.project).length > 0) {
     const { project } = data;
     return (
       <div className="project">

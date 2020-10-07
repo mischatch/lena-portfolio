@@ -1,8 +1,16 @@
 import React from 'react';
 import { client } from '../apolloClient';
 import { gql } from "apollo-boost";
+import Loading from './loading'
 
 class About extends React.Component {
+  constructor(props){
+    super(props);
+
+    this.state = {
+      data: []
+    }
+  }
 
   componentDidMount(){
     client
@@ -10,20 +18,29 @@ class About extends React.Component {
         query: gql`
         {
           abouts {
+            id,
             aboutText
           }
         }
         `
       })
-      .then(result => console.log(result.data.abouts[0]));
+      .then(result => {
+
+        this.setState({data: result.data.abouts});
+      });
   }
 
   render(){
-    return (
-      <div>
-        <h1>React works</h1>
-      </div>
-    )
+    const { data } = this.state;
+    if(data.length === 0){
+      return <Loading />;
+    } else {
+      return (
+        <div className="about-page">
+          {data.map((val, i) => <p key={`aboutText${i}`}>{val.aboutText}</p>)}
+        </div>
+      )
+    }
   }
 }
 
