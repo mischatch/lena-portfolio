@@ -14,7 +14,7 @@ import { Switch, Route } from "react-router-dom";
 
 function App() {
   return (
-      {/* <Router> */}
+
         <ApolloProvider client={client}>
           <TopNav />
 
@@ -26,7 +26,7 @@ function App() {
           </Switch>
         </ApolloProvider>
 
-      {/* </Router> */}
+      
   );
 }
 
