@@ -9,14 +9,12 @@ import TopNav from './components/topnav';
 import { ApolloProvider } from '@apollo/client';
 
 
-import { Switch, Route, Router } from "react-router-dom";
-import { createBrowserHistory } from 'history';
+import { Switch, Route, BrowserRouter as Router } from "react-router-dom";
 
-const history = createBrowserHistory();
 
 function App() {
   return (
-      <Router history={history}>
+      <Router>
         <ApolloProvider client={client}>
           <TopNav />
 
