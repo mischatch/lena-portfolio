@@ -9,7 +9,7 @@ import TopNav from './components/topnav';
 import { ApolloProvider } from '@apollo/client';
 
 
-import { Switch, Route, HashRouter, BrowserRouter } from "react-router-dom";
+import { Switch, Route, BrowserRouter } from "react-router-dom";
 
 
 function App() {
