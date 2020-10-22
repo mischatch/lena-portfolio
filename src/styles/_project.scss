@@ -20,7 +20,7 @@
       left: 0;
       width: 100%;
       background: $white;
-      transform: translateY(calc(100% - 2rem));
+      transform: translateY(calc(100% - 3rem));
       transition: all .45s;
       .title {
         .show-button {
@@ -41,6 +41,8 @@
         transform: translateY(0);
       }
       .description {
+        margin-top: 2rem;
+        padding-bottom: 2rem;
         white-space: break-spaces;
       }
     }

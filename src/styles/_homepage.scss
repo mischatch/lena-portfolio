@@ -49,11 +49,18 @@
     }
     &.twoX {
       width: 50%;
+
       @media(max-width: $mobile){
         width: 100%;
       }
       .cover-image {
         @include aspect-ratio($ratio: 2/1);
+        @media(max-width: $tablet){
+          @include aspect-ratio($ratio: 3/2);
+        }
+        @media(max-width: $mobile){
+          @include aspect-ratio($ratio: 2/1);
+        }
       }
     }
   }

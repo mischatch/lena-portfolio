@@ -5,7 +5,7 @@ const TopNav = () => {
   return (
     <div className="topnav">
       <Link className="homelink" to="/">Elena Byalaya</Link>
-      <Link to="/about">About</Link>
+      <Link to="/info">Info</Link>
     </div>
   )
 }

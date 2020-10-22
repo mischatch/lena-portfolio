@@ -3,7 +3,7 @@ import { client } from '../apolloClient';
 import { gql } from "apollo-boost";
 import Loading from './loading'
 
-class About extends React.Component {
+class Info extends React.Component {
   constructor(props){
     super(props);
 
@@ -19,7 +19,10 @@ class About extends React.Component {
         {
           abouts {
             id,
-            aboutText
+            aboutText,
+            links {
+              html
+            }
           }
         }
         `
@@ -35,9 +38,13 @@ class About extends React.Component {
     if(data.length === 0){
       return <Loading />;
     } else {
+      const { aboutText, links } = this.state.data[0];
       return (
         <div className="about-page">
-          {data.map((val, i) => <p key={`aboutText${i}`}>{val.aboutText}</p>)}
+          <div className="links" dangerouslySetInnerHTML={{ __html: links[0].html }} />
+          <div className="about-copy">
+            <p>{aboutText}</p>
+          </div>
         </div>
       )
     }
@@ -45,4 +52,4 @@ class About extends React.Component {
 }
 
 
-export default About;
+export default Info;
