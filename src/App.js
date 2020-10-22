@@ -9,12 +9,12 @@ import TopNav from './components/topnav';
 import { ApolloProvider } from '@apollo/client';
 
 
-import { Switch, Route, BrowserRouter as Router } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 
 
 function App() {
   return (
-      <Router>
+      {/* <Router> */}
         <ApolloProvider client={client}>
           <TopNav />
 
@@ -26,7 +26,7 @@ function App() {
           </Switch>
         </ApolloProvider>
 
-      </Router>
+      {/* </Router> */}
   );
 }
 
