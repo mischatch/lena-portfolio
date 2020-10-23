@@ -1,6 +1,7 @@
 import React from 'react';
 import { client } from '../apolloClient';
 import { gql } from "apollo-boost";
+import { withRouter } from 'react-router-dom';
 
 class ProjectAll extends React.Component{
   constructor(props){
@@ -59,4 +60,4 @@ class ProjectAll extends React.Component{
   }
 }
 
-export default ProjectAll;
+export default withRouter(ProjectAll);

@@ -2,6 +2,7 @@ import React from 'react';
 import { client } from '../apolloClient';
 import { gql } from "apollo-boost";
 import Loading from './loading'
+import { withRouter } from 'react-router-dom';
 
 class Info extends React.Component {
   constructor(props){
@@ -52,4 +53,4 @@ class Info extends React.Component {
 }
 
 
-export default Info;
+export default withRouter(Info);
