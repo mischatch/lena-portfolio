@@ -13,3 +13,11 @@
 @function nth-value($list, $index) {
   @return if(length($list) >= $index, nth($list, $index), null);
 }
+
+@mixin fontFace($src) {
+  src: url($src + '.eot'); /* IE9 Compat Modes */
+  src: url($src + '.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url($src + '.woff2') format('woff2'), /* Super Modern Browsers */
+  url($src + '.woff') format('woff'), /* Pretty Modern Browsers */
+  url($src + '.ttf')  format('truetype'), /* Safari, Android, iOS */
+}

@@ -1,12 +1,52 @@
 .topnav {
   width: 100%;
-  padding: .3rem 1rem;
+  padding: 0rem 1rem 4.3rem;
   display: flex;
   flex-direction: row;
+  @media (max-width: $desktop){
+    padding-bottom: 3.7rem;
+  }
+  @media (max-width: $tablet){
+    padding-bottom: 2.4rem;
+  }
+  @media (max-width: $mobile){
+    padding-bottom: 1.7rem;
+  }
   a {
     text-decoration: none;
+    font-variant: small-caps;
+    text-transform: lowercase;
   }
   .homelink {
     margin-right: 2rem;
+    line-height: .5;
+    @media(min-width: $desktop){
+      font-size: 10rem;
+    }
+    @media (max-width: $desktop){
+      font-size: 8rem;
+    }
+    @media (max-width: $tablet){
+      font-size: 5.5rem;
+    }
+    @media (max-width: $mobile){
+      font-size: 4rem;
+    }
+  }
+  .info {
+    font-size: 5rem;
+    line-height: .9;
+    @media (max-width: $desktop){
+      font-size: 4rem;
+      line-height: .9;
+    }
+    @media (max-width: $tablet){
+      font-size: 2.25rem;
+      line-height: 1;
+    }
+    @media (max-width: $mobile){
+      font-size: 1.8rem;
+      line-height: 1;
+    }
   }
 }

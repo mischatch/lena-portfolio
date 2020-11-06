@@ -1,11 +1,10 @@
-// $fallback-serif: Times,"Times New Roman",Georgia,serif;
-//
-// $fallback-sans: "Arial",sans-serif;
-//
-// @font-face {
-// 	font-family: 'MINISerif-Headline';
-// 	@include fontFace('/re/styles/fonts/MINISerif-Headline');
-// 	text-transform: uppercase;
-// }
-//
-// $ff-headline: 'MINISerif-Headline', $fallback-serif;
+$fallback-serif: Times,"Times New Roman",Georgia,serif;
+
+$fallback-sans: "Roboto",sans-serif;
+
+@font-face {
+	font-family: 'Obviously-Regular';
+	src: url('../fonts/obviously/Obviously-Regular.woff2') format('woff2');
+}
+
+$ff-obv-reg: "Obviously-Regular" , $fallback-sans;

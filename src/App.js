@@ -6,6 +6,7 @@ import Home from './components/home';
 import ProjectAll from './components/project-all';
 import Project from './components/project';
 import TopNav from './components/topnav';
+import NoMatch from './components/nomatch';
 import { ApolloProvider } from '@apollo/client';
 
 
@@ -19,14 +20,15 @@ function App() {
           <TopNav />
 
           <Switch>
-          <Route exact path="/" component={Home} />
-          <Route path="/info" component={Info} />
-          <Route path='/category/:title' component={ProjectAll} />
-          <Route path='/:projectName' component={Project} />
+            <Route exact path="/" component={Home} />
+            <Route path="/info" component={Info} />
+            <Route path='/category/:title' component={ProjectAll} />
+            <Route path='/:projectName' component={Project} />
+            <Route component={NoMatch} />
           </Switch>
         </ApolloProvider>
 
-      
+
   );
 }
 

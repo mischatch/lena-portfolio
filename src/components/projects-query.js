@@ -6,6 +6,7 @@ const projectQry = gql`
   query Projects(){
     projects{
       id
+      tileTitle
       projectTitle
       tileImage
       tileSize

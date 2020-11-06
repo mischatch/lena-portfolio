@@ -26,6 +26,7 @@ class Home extends React.Component{
           projects(orderBy: order_ASC) {
             projectTitle
             shortDescription
+            tileTitle
             tileImage {
               url
             }
@@ -53,7 +54,7 @@ class Home extends React.Component{
                 className={`project-tile ${project.tileSize}`}
                 key={`tile${i}`}>
                 <div className="cover-image" style={{ 'backgroundImage': `url(${!!project.tileImage.url ? project.tileImage.url : ''})`}}>
-                  <h1 className="title">{project.projectTitle}</h1>
+                  <h1 className="title">{project.tileTitle}</h1>
                 </div>
               </Link>
             )
