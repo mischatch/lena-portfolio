@@ -3,19 +3,21 @@
   .project {
     .images {
       width: calc(100% * .75);
-      padding-bottom: 10rem;
+      /* padding-bottom: 10rem; */
       @media(max-width: $mobile){
         width: 100%;
       }
       .image-container {
         width: 100%;
         height: auto;
-        margin-bottom: 1rem;
+        &:not(:last-child){
+          margin-bottom: 1rem;
+        }
       }
     }
     .project-copy {
       padding: .3rem 1rem;
-      position: fixed;
+      position: sticky;
       bottom: 0;
       left: 0;
       width: 100%;

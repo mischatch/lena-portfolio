@@ -1,6 +1,6 @@
 .topnav {
   width: 100%;
-  padding: 0rem 1rem 4.3rem;
+  padding: 0rem 1rem 3rem;
   display: flex;
   flex-direction: row;
   @media (max-width: $desktop){
@@ -19,9 +19,9 @@
   }
   .homelink {
     margin-right: 2rem;
-    line-height: .5;
+    line-height: .3;
     @media(min-width: $desktop){
-      font-size: 10rem;
+      font-size: 7.3rem;
     }
     @media (max-width: $desktop){
       font-size: 8rem;
@@ -34,8 +34,8 @@
     }
   }
   .info {
-    font-size: 5rem;
-    line-height: .9;
+    font-size: 3.3rem;
+    line-height: .5;
     @media (max-width: $desktop){
       font-size: 4rem;
       line-height: .9;

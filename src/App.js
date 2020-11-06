@@ -7,6 +7,7 @@ import ProjectAll from './components/project-all';
 import Project from './components/project';
 import TopNav from './components/topnav';
 import NoMatch from './components/nomatch';
+import Footer from './components/footer';
 import { ApolloProvider } from '@apollo/client';
 
 
@@ -26,6 +27,7 @@ function App() {
             <Route path='/:projectName' component={Project} />
             <Route component={NoMatch} />
           </Switch>
+          <Footer />
         </ApolloProvider>
 
 
