@@ -2,5 +2,20 @@
   background: $black;
   position: absolute;
   width: 100%;
-  height: 4rem;
+  min-height: 4rem;
+  padding: 1rem;
+  h1 {
+    font-size: 4.5vw;
+    color: $white;
+    text-transform: uppercase;
+    font-variant: small-caps;
+    line-height: 1;
+    a {
+      text-decoration: none;
+      transition: all .25s;
+      &:hover {
+        color: #9DD39D;
+      }
+    }
+  }
 }

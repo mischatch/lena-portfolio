@@ -4,7 +4,7 @@ import React from 'react';
 const TopNav = () => {
   return (
     <div className="footer">
-
+      <h1>Say Hi! → → → <a className="email" href="mailto:lbyalaya@gmail.com">lbyalaya@gmail.com</a></h1>
     </div>
   )
 }

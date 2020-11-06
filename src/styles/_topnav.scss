@@ -3,14 +3,11 @@
   padding: 0rem 1rem 3rem;
   display: flex;
   flex-direction: row;
-  @media (max-width: $desktop){
-    padding-bottom: 3.7rem;
-  }
   @media (max-width: $tablet){
     padding-bottom: 2.4rem;
   }
   @media (max-width: $mobile){
-    padding-bottom: 1.7rem;
+    padding-bottom: 1.1rem;
   }
   a {
     text-decoration: none;
@@ -20,33 +17,32 @@
   .homelink {
     margin-right: 2rem;
     line-height: .3;
-    @media(min-width: $desktop){
-      font-size: 7.3rem;
-    }
-    @media (max-width: $desktop){
-      font-size: 8rem;
-    }
+    font-size: 7.3rem;
     @media (max-width: $tablet){
       font-size: 5.5rem;
     }
     @media (max-width: $mobile){
-      font-size: 4rem;
+      font-size: 3rem;
+    }
+    @media (max-width: 420px){
+      line-height: .6;
+      font-size: 1.7rem;
     }
   }
   .info {
     font-size: 3.3rem;
-    line-height: .5;
-    @media (max-width: $desktop){
-      font-size: 4rem;
-      line-height: .9;
-    }
+    line-height: 1.1;
     @media (max-width: $tablet){
-      font-size: 2.25rem;
-      line-height: 1;
+      font-size: 2.2rem;
+      line-height: 1.2;
     }
     @media (max-width: $mobile){
       font-size: 1.8rem;
-      line-height: 1;
+      line-height: .8;
+    }
+    @media (max-width: 420px){
+      font-size: 1rem;
+      line-height: .9;
     }
   }
 }
