@@ -1,5 +1,6 @@
 .project-page {
   width: 100%;
+  /* overflow: hidden; */
   .project {
     .images {
       width: calc(100% * .75);
@@ -16,8 +17,8 @@
       }
     }
     .project-copy {
-      padding: .3rem 1rem;
-      position: fixed;
+      padding: .3rem 1rem 2rem;
+      position: sticky;
       bottom: 0;
       left: 0;
       width: 100%;
@@ -41,11 +42,15 @@
       }
       &.active {
         transform: translateY(0);
+        .description{
+          display: block;
+        }
       }
       .description {
         margin-top: 2rem;
         padding-bottom: 2rem;
         white-space: break-spaces;
+        display: none;
       }
     }
   }
