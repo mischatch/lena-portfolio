@@ -10,6 +10,9 @@
     text-transform: uppercase;
     font-variant: small-caps;
     line-height: 1;
+    @media(max-width: $mobile){
+      font-size: 4.2vw;
+    }
     a {
       text-decoration: none;
       transition: all .25s;

@@ -12,6 +12,8 @@ class Project extends React.Component{
     }
   }
   componentDidMount(){
+    window.scrollTo(0, 0);
+
     let projectId = '';
     if(!!this.props.location.state){
       projectId = this.props.location.state.projectId;
