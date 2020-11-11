@@ -1,7 +1,10 @@
 .project-page {
   width: 100%;
   /* overflow: hidden; */
-  padding-bottom: 5rem;
+  padding-bottom: 7vw;
+  @media(max-width: $tablet){
+    padding-bottom: 4rem;
+  }
   .project {
     .images {
       width: calc(100% * .75);
