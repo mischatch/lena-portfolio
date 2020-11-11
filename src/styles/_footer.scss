@@ -1,4 +1,4 @@
-.footer {
+.footer, .fake-footer {
   background: $black;
   position: absolute;
   bottom: 0;
@@ -22,5 +22,13 @@
         color: #9DD39D;
       }
     }
+  }
+}
+
+.fake-footer {
+  position: relative;
+  visibility: hidden;
+  h1 {
+    color: $black;
   }
 }

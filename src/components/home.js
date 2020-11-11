@@ -69,9 +69,9 @@ class Home extends React.Component{
 
   render(){
     return (
-      <div>
+      <div className="home">
         {this.projects()}
-        {/* <ProjectsQuery /> */}
+        <div className="fake-footer"><h1>elenabyalaya</h1></div>
       </div>
     )
   }
