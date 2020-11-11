@@ -24,7 +24,7 @@ function App() {
             <Route exact path="/" component={Home} />
             <Route path="/info" component={Info} />
             <Route path='/category/:title' component={ProjectAll} />
-            <Route path='/:projectName' component={Project} />
+            <Route exact path='/project/:projectName' component={Project} />
             <Route component={NoMatch} />
           </Switch>
           <Footer />

@@ -1,3 +1,15 @@
 * {
   font-family: $ff-obv-reg;
 }
+
+.nomatch, .loading {
+  min-height: 20rem;
+  padding: 1.3rem;
+  h1{
+    font-size: 3rem;
+    color: $white;
+    background: $black;
+    display: inline;
+    padding: 0rem 1rem 0.6rem;
+  }
+}

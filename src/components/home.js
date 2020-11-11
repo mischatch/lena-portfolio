@@ -47,7 +47,7 @@ class Home extends React.Component{
         <div className="tiles">
           {projects.map((project, i) => <Link
                 to={{
-                  pathname: `/${ project.projectTitle.split(' ').join('-') }`,
+                  pathname: `/project/${ project.projectTitle.split(' ').join('-') }`,
                   state: {projectId: project.projectTitle.split(' ').join('-')}
                 }}
                 className={`project-tile ${project.tileSize}`}
