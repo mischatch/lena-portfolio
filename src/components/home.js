@@ -1,51 +1,50 @@
-import React from 'react';
-import { client } from '../apolloClient';
-import { gql } from "apollo-boost";
-import { Link, withRouter } from "react-router-dom";
+import React, { useState } from 'react';
+import { useQuery } from '@apollo/client';
+import { Link } from "react-router-dom";
 import Loading from './loading';
-// import Project from './project';
-// import ProjectAll from './project-all';
+import {GET_FEATURE_FLAGS, GET_PROJECTS_QUERY} from './queries/index';
+import { useEffect } from 'react';
 
-class Home extends React.Component{
-  constructor(props){
-    super(props);
+export default function Home(){
+  const [data, setData] = useState();
+  const {loading, error, refetch: fetchProjects} = useQuery(GET_PROJECTS_QUERY);
+  const {loading: ffLoading, data: featureFlags } = useQuery(GET_FEATURE_FLAGS);
 
-    this.state = {
-      categories: [],
-      projects: [],
-    }
-
-    this.projects = this.projects.bind(this);
-  }
-
-  componentDidMount(){
-    client
-    .query({
-        query: gql`
-        {
-          projects(orderBy: order_ASC) {
-            projectTitle
-            shortDescription
-            tileImage {
-              url
-            }
-            tileSize
-            order
-          }
+  useEffect(() => {
+    if(featureFlags){
+      const { value } = featureFlags.featureFlags[0];
+      if(!ffLoading && !value){
+        async function getData(){
+          const fetchedData = await fetchProjects();
+          setData(fetchedData.data);
         }
-        `
-      })
-      .then(result => this.setState({projects: result.data.projects}));
-
+        getData();
+      }
+    }
+  }, [fetchProjects, ffLoading, featureFlags])
+ 
+  if(loading || ffLoading || featureFlags === undefined){
+    return (
+      <Loading />
+    );
   }
 
+  if(error){
+    return <p>Error: {error}</p>
+  }
 
-  projects(){
-    if(this.state.projects.length > 0){
-      const { projects } = this.state;
-      return (
-        <div className="tiles">
-          {projects.map((project, i) => <Link
+  if(featureFlags.featureFlags[0].value){
+    return (
+      <div className='maintenance'>
+        Site is Under Maintenance!
+      </div>
+    )
+  }
+  
+  return (
+    <div className="home">
+       <div className="tiles">
+          {data.projects.map((project, i) => <Link
                 to={{
                   pathname: `/project/${ project.projectTitle.split(' ').join('-') }`,
                   state: {projectId: project.projectTitle.split(' ').join('-')}
@@ -59,22 +58,7 @@ class Home extends React.Component{
             )
           }
         </div>
-      )
-    } else {
-      return (
-        <Loading />
-      );
-    }
-  }
-
-  render(){
-    return (
-      <div className="home">
-        {this.projects()}
-        <div className="fake-footer"><h1>elenabyalaya</h1></div>
-      </div>
-    )
-  }
+      <div className="fake-footer"><h1>elenabyalaya</h1></div>
+    </div>
+  )
 }
-
-export default withRouter(Home);

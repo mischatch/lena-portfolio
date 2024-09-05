@@ -1,6 +1,6 @@
 import React from 'react';
 import { client } from '../apolloClient';
-import { gql } from "apollo-boost";
+import gql from 'graphql-tag';
 import { withRouter } from 'react-router-dom';
 
 class ProjectAll extends React.Component{

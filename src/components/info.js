@@ -1,56 +1,28 @@
 import React from 'react';
-import { client } from '../apolloClient';
-import { gql } from "apollo-boost";
 import Loading from './loading'
-import { withRouter } from 'react-router-dom';
+import { useQuery } from '@apollo/client';
+import { GET_INFO } from './queries';
 
-class Info extends React.Component {
-  constructor(props){
-    super(props);
-
-    this.state = {
-      data: []
-    }
+export default function Info(){
+  const {loading, error, data} = useQuery(GET_INFO);
+  
+  if(loading || data === undefined){
+    return <Loading />;
   }
-
-  componentDidMount(){
-    client
-    .query({
-        query: gql`
-        {
-          abouts {
-            id,
-            aboutText,
-            links {
-              html
-            }
-          }
-        }
-        `
-      })
-      .then(result => {
-
-        this.setState({data: result.data.abouts});
-      });
+  
+  if(error){
+    return <p>Error: {error}</p>
   }
+  
+  const { aboutText, links } = data.abouts[0];
 
-  render(){
-    const { data } = this.state;
-    if(data.length === 0){
-      return <Loading />;
-    } else {
-      const { aboutText, links } = this.state.data[0];
-      return (
-        <div className="about-page">
-          <div className="links" dangerouslySetInnerHTML={{ __html: links[0].html }} />
-          <div className="about-copy">
-            <p>{aboutText}</p>
-          </div>
-        </div>
-      )
-    }
-  }
+  return (
+    <div className="about-page">
+      <div className="links" dangerouslySetInnerHTML={{ __html: links[0].html }} />
+      <div className="about-copy">
+        <p>{aboutText}</p>
+      </div>
+    </div>
+  )
+
 }
-
-
-export default withRouter(Info);

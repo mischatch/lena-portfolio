@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Loading from './loading';
 import { useQuery, gql } from '@apollo/client';
 // import { client } from '../apolloClient';
-// import { gql } from "apollo-boost";
+// import gql from 'graphql-tag';
 
 const projectQry = gql`
   query Project($projectTitle: String!) {

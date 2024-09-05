@@ -7,8 +7,12 @@
 // });
 
 
-import ApolloClient from 'apollo-boost';
+import { ApolloClient, InMemoryCache } from '@apollo/client';
+
+
+
 
 export const client = new ApolloClient({
   uri: 'https://api-us-east-1.graphcms.com/v2/ck573d2vv261901gihz5i4qa3/master',
+  cache: new InMemoryCache(),
 });
