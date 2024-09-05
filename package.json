@@ -12,13 +12,13 @@
     "apollo-link": "^1.2.14",
     "apollo-link-error": "^1.1.13",
     "apollo-link-http": "^1.5.17",
-    "firebase": "^7.24.0",
+    "firebase": "^10.13.1",
     "graphql": "^15.9.0",
     "graphql-tag": "^2.12.6",
     "react": "^16.14.0",
     "react-dom": "^16.14.0",
     "react-router-dom": "^5.2.0",
-    "react-scripts": "^3.4.4",
+    "react-scripts": "^5.0.1",
     "sass": "^1.60.0"
   },
   "scripts": {
