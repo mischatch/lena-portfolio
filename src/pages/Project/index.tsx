@@ -124,8 +124,8 @@ const Project = () => {
                 src={image.url}
                 sx={{
                   width: "calc(50% - 8px)",
-                  height: "500px",
-                  objectFit: "cover",
+                  height: "49rem",
+                  objectFit: "contain",
                   transition: "transform 0.3s ease-in-out",
                 }}
               />
