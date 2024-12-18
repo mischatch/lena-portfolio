@@ -2,7 +2,7 @@ import { gql } from "@apollo/client";
 
 export const GET_PROJECTS_QUERY = gql`
   query getProjects {
-    projects(orderBy: id_ASC) {
+    projects(orderBy: createdAt_DESC) {
       id
       projectTitle
       tileImage {
@@ -11,6 +11,7 @@ export const GET_PROJECTS_QUERY = gql`
       projectType
       additionalInfo
       fontsInUse
+      createdAt
     }
   }
 `;
@@ -27,6 +28,7 @@ export const GET_PROJECT_BY_ID = gql`
       projectType
       additionalInfo
       fontsInUse
+      createdAt
     }
   }
 `;

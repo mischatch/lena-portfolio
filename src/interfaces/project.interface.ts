@@ -11,4 +11,5 @@ export interface IProject {
   projectType: string;
   additionalInfo: string;
   fontsInUse: string;
+  createdAt: string;
 }
