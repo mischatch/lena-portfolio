@@ -79,7 +79,7 @@ const regularVariants: TypographyOptions = {
   },
   h6: {
     fontSize: "1rem",
-    lineHeight: "1rem",
+    lineHeight: "1.1rem",
   },
   p: {
     fontSize: "0.93rem", // 16px
