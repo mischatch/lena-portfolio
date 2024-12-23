@@ -144,12 +144,12 @@ const Project: React.FC = () => {
     }
   }, [project]);
 
-  const handleNextImage = () => {
+  const handleNextImage = useCallback(() => {
     if (!project?.project.image) return;
     setCurrentImageIndex(prev =>
       prev < project.project.image.length - 1 ? prev + 1 : prev
     );
-  };
+  }, [project?.project.image]);
 
   const handlePrevImage = () => {
     setCurrentImageIndex(prev => (prev > 0 ? prev - 1 : prev));
@@ -166,7 +166,7 @@ const Project: React.FC = () => {
 
     window.addEventListener("keydown", handleKeyPress);
     return () => window.removeEventListener("keydown", handleKeyPress);
-  }, []);
+  }, [handleNextImage]);
 
   useEffect(() => {
     const handleResize = () => {
