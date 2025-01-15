@@ -58,14 +58,17 @@ export function NavItemLink({ primary, to }: IListItemLinkProps) {
         <Stack direction="row" alignItems="center">
           <ListItemText
             primary={primary}
-            primaryTypographyProps={{
-              variant: "nav",
-              textTransform: "uppercase",
+            slotProps={{
+              primary: {
+                variant: "nav",
+              },
             }}
             sx={theme => ({
               color: theme.palette.text.primary,
+              fontFamily: "Obviously-Regular",
               margin: "0",
               lineHeight: 1,
+              pb: "0.3rem",
             })}
           />
         </Stack>

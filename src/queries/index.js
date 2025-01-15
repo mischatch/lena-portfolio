@@ -5,6 +5,7 @@ export const GET_PROJECTS_QUERY = gql`
     projects(orderBy: createdAt_DESC) {
       id
       projectTitle
+      tileTitle
       tileImage {
         url
       }

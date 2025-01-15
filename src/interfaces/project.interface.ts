@@ -1,6 +1,7 @@
 export interface IProject {
   id: string;
   projectTitle: string;
+  tileTitle: string;
   projectDescription: string;
   tileImage: {
     url: string;

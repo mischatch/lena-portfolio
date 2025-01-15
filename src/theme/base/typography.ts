@@ -1,58 +1,6 @@
 import { ThemeOptions } from "@mui/material";
 import { TypographyOptions } from "@mui/material/styles/createTypography";
 
-// Declare custom variants
-declare module "@mui/material/styles" {
-  interface TypographyVariants {
-    p: React.CSSProperties;
-    span: React.CSSProperties;
-    nav: React.CSSProperties;
-    h1_medium: React.CSSProperties;
-    h2_medium: React.CSSProperties;
-    h3_medium: React.CSSProperties;
-    h4_medium: React.CSSProperties;
-    h5_medium: React.CSSProperties;
-    h6_medium: React.CSSProperties;
-    p_medium: React.CSSProperties;
-    span_medium: React.CSSProperties;
-    button_medium: React.CSSProperties;
-  }
-
-  interface TypographyVariantsOptions {
-    p?: React.CSSProperties;
-    span?: React.CSSProperties;
-    nav?: React.CSSProperties;
-    h1_medium?: React.CSSProperties;
-    h2_medium?: React.CSSProperties;
-    h3_medium?: React.CSSProperties;
-    h4_medium?: React.CSSProperties;
-    h5_medium?: React.CSSProperties;
-    h6_medium?: React.CSSProperties;
-    p_medium?: React.CSSProperties;
-    span_medium?: React.CSSProperties;
-    nav_medium?: React.CSSProperties;
-    button_medium?: React.CSSProperties;
-  }
-}
-
-// Update Typography's props to include custom variants
-declare module "@mui/material/Typography" {
-  interface TypographyPropsVariantOverrides {
-    p: true;
-    span: true;
-    nav: true;
-    h1_medium: true;
-    h2_medium: true;
-    h3_medium: true;
-    h4_medium: true;
-    h5_medium: true;
-    h6_medium: true;
-    p_medium: true;
-    span_medium: true;
-    button_medium: true;
-  }
-}
-
 const regularVariants: TypographyOptions = {
   h1: {
     fontSize: "4rem", // 64px
@@ -74,7 +22,7 @@ const regularVariants: TypographyOptions = {
     lineHeight: "2.5rem", // 40px
   },
   h5: {
-    fontSize: "1.78125rem",
+    fontSize: "1.6rem",
     lineHeight: "1.9375rem", // 31px
   },
   h6: {
@@ -97,7 +45,7 @@ const regularVariants: TypographyOptions = {
     fontSize: "1rem", // 16px
     lineHeight: "1.5rem", // 24px
   },
-} as const;
+};
 
 const { h1, h2, h3, h4, h5, h6, p, span, nav, button } = regularVariants;
 
@@ -112,14 +60,14 @@ const mediumVariants: TypographyOptions = {
   span_medium: { ...span, fontWeight: 500 },
   nav_medium: { ...nav, fontWeight: 500 },
   button_medium: { ...button, fontWeight: 500 },
-} as const;
+};
 
-export const typography: NonNullable<ThemeOptions["typography"]> = {
-  fontFamily: "Obviously-Regular, sans-serif",
+export const typography: NonNullable<ThemeOptions["typography"]> = () => ({
+  fontFamily: "Obviously, Obviously-Regular, sans-serif",
   allVariants: {
     letterSpacing: 0,
     fontWeight: 400,
   },
   ...regularVariants,
   ...mediumVariants,
-};
+});

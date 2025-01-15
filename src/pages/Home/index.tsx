@@ -68,10 +68,12 @@ export default function Home() {
               <Box
                 component="img"
                 width="100%"
-                alt={`${project.projectTitle} — Preview Image`}
+                alt={`${project.tileTitle ?? project.projectTitle} — Preview Image`}
                 src={!!project.tileImage.url ? project.tileImage.url : ""}
               />
-              <Typography variant="p">{project.projectTitle}</Typography>
+              <Typography variant="p" sx={{ fontFamily: "Obviously-Regular" }}>
+                {project.tileTitle ?? project.projectTitle}
+              </Typography>
             </Paper>
           </Link>
         ))}
