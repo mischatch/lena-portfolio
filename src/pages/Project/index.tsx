@@ -194,7 +194,7 @@ const Project: React.FC = () => {
             position: "relative",
             width: "100%",
             mb: "0.5rem",
-            height: "75vh",
+            height: "80vh",
             overflow: "hidden",
           }}
         >
