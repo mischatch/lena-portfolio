@@ -6,7 +6,7 @@ const TopNav = () => {
   return (
     <Container>
       <AppBar position="static" color="transparent" elevation={0}>
-        <Grid container spacing={2} sx={{ paddingY: "0.75rem" }}>
+        <Grid container spacing={2} sx={{ paddingY: "0.65rem" }}>
           {/* First column - Name */}
           <Grid size={3}>
             <NavItemLink to="/" primary="Elena Byalaya" />

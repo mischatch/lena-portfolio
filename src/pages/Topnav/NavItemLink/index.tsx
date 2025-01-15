@@ -65,6 +65,7 @@ export function NavItemLink({ primary, to }: IListItemLinkProps) {
             sx={theme => ({
               color: theme.palette.text.primary,
               margin: "0",
+              lineHeight: 1,
             })}
           />
         </Stack>

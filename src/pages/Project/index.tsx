@@ -193,7 +193,7 @@ const Project: React.FC = () => {
           sx={{
             position: "relative",
             width: "100%",
-            mb: 4,
+            mb: "0.5rem",
             height: "75vh",
             overflow: "hidden",
           }}
@@ -214,7 +214,7 @@ const Project: React.FC = () => {
                 sx={{
                   flex: "none",
                   height: "100%",
-                  mr: index < project.project.image.length - 1 ? "2rem" : 0,
+                  mr: index < project.project.image.length - 1 ? "1rem" : 0,
                 }}
               >
                 <Box
@@ -282,9 +282,9 @@ const Project: React.FC = () => {
         <Grid container spacing={2} sx={{ px: "3.125rem" }}>
           <Grid size={4.5}>
             <Typography variant="h5">{project.project.projectTitle}</Typography>
-            <Typography sx={{ mt: 1 }}>
+            {/* <Typography sx={{ mt: 1 }}>
               {project.project.projectDescription}
-            </Typography>
+            </Typography> */}
           </Grid>
 
           <Grid size={3} sx={{ textAlign: "center" }}>
