@@ -22,9 +22,8 @@ const AboutLink = ({ id, title, url }: IAboutLinkProps) => {
   return (
     <Grid key={id} size={3}>
       <Typography variant="h5">
-        {title && title !== "email" && `${title}: `}
         <Link target="_blank" rel="noopener" href={urlAddress}>
-          {url}
+          {title && title !== "email" ? title : url}
         </Link>
       </Typography>
     </Grid>
