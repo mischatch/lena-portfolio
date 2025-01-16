@@ -63,7 +63,7 @@ const mediumVariants: TypographyOptions = {
 };
 
 export const typography: NonNullable<ThemeOptions["typography"]> = () => ({
-  fontFamily: "Obviously, Obviously-Regular, sans-serif",
+  fontFamily: "Obviously-Regular, sans-serif",
   allVariants: {
     letterSpacing: 0,
     fontWeight: 400,
