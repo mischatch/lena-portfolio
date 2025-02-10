@@ -5,6 +5,7 @@ import Loading from "../Loading";
 import { GET_INFO } from "../../queries";
 import { PageMeta } from "pages/components/PageMeta";
 import AboutLink from "./componets/AboutLink";
+import TitledList from "./componets/TitledList";
 
 export default function About() {
   const { loading, error, data } = useQuery(GET_INFO);
@@ -17,7 +18,8 @@ export default function About() {
     return <p>Error: {error}</p>;
   }
 
-  const { aboutText, links } = data.abouts[0];
+  const { aboutText, links, titledList } = data.abouts[0];
+
   return (
     <Container>
       <PageMeta title="Elena Byalaya — About" />
@@ -30,6 +32,9 @@ export default function About() {
           <AboutLink id={id} title={title} url={url} />
         ))}
       </Grid>
+      {titledList.map(({ title, linkItem }) => (
+        <TitledList title={title} linkItem={linkItem} />
+      ))}
     </Container>
   );
 }

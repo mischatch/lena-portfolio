@@ -46,6 +46,21 @@ export const GET_INFO = gql`
           url
         }
       }
+      titledList {
+        ... on YearLinksWithTitle {
+          id
+          title
+          linkItem {
+            ... on YearLink {
+              id
+              linkName
+              linkUrl
+              type
+              year
+            }
+          }
+        }
+      }
     }
   }
 `;

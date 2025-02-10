@@ -282,9 +282,9 @@ const Project: React.FC = () => {
         <Grid container spacing={2} sx={{ px: "3.125rem" }}>
           <Grid size={4.5}>
             <Typography variant="h5">{project.project.projectTitle}</Typography>
-            {/* <Typography sx={{ mt: 1 }}>
+            <Typography sx={{ mt: 1 }}>
               {project.project.projectDescription}
-            </Typography> */}
+            </Typography>
           </Grid>
 
           <Grid size={3} sx={{ textAlign: "center" }}>
