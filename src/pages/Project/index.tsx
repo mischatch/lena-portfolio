@@ -3,8 +3,7 @@ import { useParams } from "react-router-dom";
 import { useQuery } from "@apollo/client";
 import { GET_PROJECT_BY_ID } from "queries";
 import { IGetProjectById } from "../../interfaces/get-project.interface";
-import { Box, Grid2 as Grid, Typography, IconButton } from "@mui/material";
-import { ArrowBack, ArrowForward } from "@mui/icons-material";
+import { Box, Grid2 as Grid, Typography } from "@mui/material";
 
 const Project: React.FC = () => {
   const { projectId } = useParams();
@@ -243,37 +242,43 @@ const Project: React.FC = () => {
           {imagesLoaded && dimensions?.needsNavigation && (
             <>
               {currentImageIndex > 0 && (
-                <IconButton
+                <Box
+                  onMouseEnter={e => {
+                    e.currentTarget.style.cursor = "pointer";
+                  }}
+                  onMouseLeave={e => {
+                    e.currentTarget.style.cursor = "default";
+                  }}
                   onClick={handlePrevImage}
                   sx={{
                     position: "absolute",
-                    left: "1rem",
-                    top: "50%",
-                    transform: "translateY(-50%)",
-                    bgcolor: "rgba(255, 255, 255, 0.4)",
-                    "&:hover": { bgcolor: "rgba(255, 255, 255, 0.9)" },
+                    left: 0,
+                    top: 0,
+                    bottom: 0,
+                    width: "50%",
                     zIndex: 2,
                   }}
-                >
-                  <ArrowBack />
-                </IconButton>
+                />
               )}
 
               {currentImageIndex < project.project.image.length - 1 && (
-                <IconButton
+                <Box
+                  onMouseEnter={e => {
+                    e.currentTarget.style.cursor = "pointer";
+                  }}
+                  onMouseLeave={e => {
+                    e.currentTarget.style.cursor = "default";
+                  }}
                   onClick={handleNextImage}
                   sx={{
                     position: "absolute",
-                    right: "1rem",
-                    top: "50%",
-                    transform: "translateY(-50%)",
-                    bgcolor: "rgba(255, 255, 255, 0.4)",
-                    "&:hover": { bgcolor: "rgba(255, 255, 255, 0.9)" },
+                    right: 0,
+                    top: 0,
+                    bottom: 0,
+                    width: "50%",
                     zIndex: 2,
                   }}
-                >
-                  <ArrowForward />
-                </IconButton>
+                />
               )}
             </>
           )}
