@@ -24,7 +24,7 @@ export default function About() {
     <Container>
       <PageMeta title="Elena Byalaya — About" />
       <Box sx={{ marginTop: "0.75rem" }} />
-      <Typography component="h3" variant="h3">
+      <Typography component="h5" variant="h5" sx={{ maxWidth: "75rem" }}>
         {aboutText}
       </Typography>
       <Grid container sx={{ marginTop: "4rem" }}>
