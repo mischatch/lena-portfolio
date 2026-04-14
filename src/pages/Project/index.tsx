@@ -5,6 +5,24 @@ import { GET_PROJECT_BY_ID } from "queries";
 import { IGetProjectById } from "../../interfaces/get-project.interface";
 import { Box, Grid2 as Grid, Typography } from "@mui/material";
 
+type MediaItem =
+  | { mediaType: "image"; url: string }
+  | { mediaType: "embededVideoCode"; embedCode: string };
+
+function getMediaItems(project: IGetProjectById): MediaItem[] {
+  if (project.project.image.length > 0) {
+    return project.project.image.map(img => ({
+      mediaType: "image" as const,
+      url: img.url,
+    }));
+  }
+  return project.project.imageAndVideo.map(item =>
+    item.mediaType === "image"
+      ? { mediaType: "image" as const, url: item.image.url }
+      : { mediaType: "embededVideoCode" as const, embedCode: item.embedCode }
+  );
+}
+
 const Project: React.FC = () => {
   const { projectId } = useParams();
   const [project, setProject] = useState<IGetProjectById | null>(null);
@@ -13,6 +31,7 @@ const Project: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const slideshowRef = useRef<HTMLDivElement>(null);
   const imageRefs = useRef<Array<HTMLImageElement | null>>([]);
+  const aspectRatiosRef = useRef<(number | null)[]>([]);
 
   const { loading, refetch: getProject } = useQuery<IGetProjectById>(
     GET_PROJECT_BY_ID,
@@ -24,26 +43,27 @@ const Project: React.FC = () => {
     }
   );
 
+  const mediaItems: MediaItem[] = project ? getMediaItems(project) : [];
+
   const calculateDimensions = useCallback(() => {
     if (!containerRef.current || !slideshowRef.current) return null;
 
     const windowW = window.innerWidth;
     const windowH = window.innerHeight;
     const imageHeight = windowH * 0.75; // 75vh
-    const marginX = 50; // Fixed margin in pixels
-    const gutter = 32; // Fixed gutter in pixels
+    const marginX = 50;
+    const gutter = 32;
 
-    // Calculate total content width including gutters
-    const images = slideshowRef.current.querySelectorAll("img");
+    const ratios = aspectRatiosRef.current;
+    if (ratios.length === 0 || ratios.some(r => r === null)) return null;
+
     let totalWidth = 0;
-    images.forEach((img, i) => {
-      const ratio = img.naturalWidth / img.naturalHeight;
-      const computedWidth = imageHeight * ratio;
-      totalWidth += computedWidth;
-      if (i < images.length - 1) totalWidth += gutter;
+    (ratios as number[]).forEach((ratio, i) => {
+      totalWidth += imageHeight * ratio;
+      if (i < ratios.length - 1) totalWidth += gutter;
     });
 
-    totalWidth += marginX * 2; // Add left and right margins
+    totalWidth += marginX * 2;
     const needsNavigation = totalWidth > windowW;
 
     return {
@@ -64,52 +84,37 @@ const Project: React.FC = () => {
       if (!dimensions) return 0;
 
       const { windowW, imageHeight, marginX, gutter } = dimensions;
-      const images = Array.from(slideshowRef.current.querySelectorAll("img"));
-      const totalImages = images.length;
+      const ratios = aspectRatiosRef.current as number[];
+      const totalItems = ratios.length;
 
-      // Handle first image
-      if (index === 0) {
-        return marginX; // Start position with left margin
-      }
+      if (index === 0) return marginX;
 
-      // Handle last image
-      if (index === totalImages - 1) {
-        let totalWidth = marginX; // Start with left margin
-        let lastImageWidth = 0;
-
-        images.forEach((img, i) => {
-          const ratio = img.naturalWidth / img.naturalHeight;
+      if (index === totalItems - 1) {
+        let totalWidth = marginX;
+        let lastItemWidth = 0;
+        ratios.forEach((ratio, i) => {
           const width = imageHeight * ratio;
-          if (i === totalImages - 1) {
-            lastImageWidth = width;
+          if (i === totalItems - 1) {
+            lastItemWidth = width;
           } else {
             totalWidth += width + gutter / 2;
           }
         });
-
-        // Calculate position that will place the last image marginX pixels from the right edge
-        return windowW - (totalWidth + lastImageWidth + marginX);
+        return windowW - (totalWidth + lastItemWidth + marginX);
       }
 
-      // Calculate position for center alignment
       let widthBeforeCurrent = marginX;
-      let currentImageWidth = 0;
-
+      let currentItemWidth = 0;
       for (let i = 0; i <= index; i++) {
-        const img = images[i];
-        const ratio = img.naturalWidth / img.naturalHeight;
-        const width = imageHeight * ratio;
-
+        const width = imageHeight * ratios[i];
         if (i === index) {
-          currentImageWidth = width;
+          currentItemWidth = width;
         } else {
           widthBeforeCurrent += width + gutter;
         }
       }
 
-      // Center the current image
-      const centerPosition = (windowW - currentImageWidth) / 2;
-      return centerPosition - widthBeforeCurrent;
+      return (windowW - currentItemWidth) / 2 - widthBeforeCurrent;
     },
     [calculateDimensions]
   );
@@ -120,9 +125,7 @@ const Project: React.FC = () => {
     if (projectId) {
       const fetchProject = async () => {
         try {
-          const { data } = await getProject({
-            id: projectId,
-          });
+          const { data } = await getProject({ id: projectId });
           if (data) {
             setProject(data);
           }
@@ -134,21 +137,24 @@ const Project: React.FC = () => {
     }
   }, [projectId, getProject]);
 
+  // Initialise aspect ratios when project loads.
+  // Videos get a fixed 16/9 ratio; images start as null until onLoad fires.
   useEffect(() => {
-    if (project?.project.image) {
-      const allImagesLoaded = imageRefs.current.every(img => img?.complete);
-      if (allImagesLoaded) {
-        setImagesLoaded(true);
-      }
+    if (!project) return;
+    const items = getMediaItems(project);
+    aspectRatiosRef.current = items.map(item =>
+      item.mediaType === "embededVideoCode" ? 16 / 9 : null
+    );
+    if (items.every(item => item.mediaType === "embededVideoCode")) {
+      setImagesLoaded(true);
     }
   }, [project]);
 
   const handleNextImage = useCallback(() => {
-    if (!project?.project.image) return;
     setCurrentImageIndex(prev =>
-      prev < project.project.image.length - 1 ? prev + 1 : prev
+      prev < mediaItems.length - 1 ? prev + 1 : prev
     );
-  }, [project?.project.image]);
+  }, [mediaItems.length]);
 
   const handlePrevImage = () => {
     setCurrentImageIndex(prev => (prev > 0 ? prev - 1 : prev));
@@ -207,34 +213,49 @@ const Project: React.FC = () => {
               transition: "transform 0.5s cubic-bezier(0.4, 0, 0.2, 1)",
             }}
           >
-            {project.project.image.map((image, index) => (
+            {mediaItems.map((item, index) => (
               <Box
-                key={`${image.url}-${index}`}
+                key={index}
                 sx={{
                   flex: "none",
                   height: "100%",
-                  mr: index < project.project.image.length - 1 ? "1rem" : 0,
+                  mr: index < mediaItems.length - 1 ? "1rem" : 0,
                 }}
               >
-                <Box
-                  component="img"
-                  src={image.url}
-                  ref={el => {
-                    if (el instanceof HTMLImageElement) {
-                      imageRefs.current[index] = el;
-                    }
-                  }}
-                  onLoad={() => {
-                    if (index === project.project.image.length - 1) {
-                      setImagesLoaded(true);
-                    }
-                  }}
-                  sx={{
-                    height: "100%",
-                    width: "auto",
-                    objectFit: "contain",
-                  }}
-                />
+                {item.mediaType === "image" ? (
+                  <Box
+                    component="img"
+                    src={item.url}
+                    ref={el => {
+                      if (el instanceof HTMLImageElement) {
+                        imageRefs.current[index] = el;
+                      }
+                    }}
+                    onLoad={e => {
+                      const img = e.currentTarget;
+                      aspectRatiosRef.current[index] =
+                        img.naturalWidth / img.naturalHeight;
+                      const allLoaded = aspectRatiosRef.current.every(
+                        r => r !== null
+                      );
+                      if (allLoaded) setImagesLoaded(true);
+                    }}
+                    sx={{
+                      height: "100%",
+                      width: "auto",
+                      objectFit: "contain",
+                    }}
+                  />
+                ) : (
+                  <Box
+                    sx={{
+                      height: "100%",
+                      aspectRatio: "16 / 9",
+                      "& iframe": { width: "100%", height: "100%", border: "none" },
+                    }}
+                    dangerouslySetInnerHTML={{ __html: item.embedCode }}
+                  />
+                )}
               </Box>
             ))}
           </Box>
@@ -261,7 +282,7 @@ const Project: React.FC = () => {
                 />
               )}
 
-              {currentImageIndex < project.project.image.length - 1 && (
+              {currentImageIndex < mediaItems.length - 1 && (
                 <Box
                   onMouseEnter={e => {
                     e.currentTarget.style.cursor = "pointer";

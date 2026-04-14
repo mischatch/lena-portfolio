@@ -26,6 +26,13 @@ export const GET_PROJECT_BY_ID = gql`
       image {
         url
       }
+      imageAndVideo {
+        embedCode
+        image {
+          url
+        }
+        mediaType
+      }
       projectType
       additionalInfo
       fontsInUse
